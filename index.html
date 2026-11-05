@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="aurora"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Daftar Pertemuan</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--r:18px;--hf:'Outfit',sans-serif;--bf:'Inter',system-ui,sans-serif;--mf:'JetBrains Mono',monospace}
+[data-theme=aurora]{--bg:#0b0d1a;--bg2:radial-gradient(900px 500px at 15% -10%,#3b2a8c66,transparent),radial-gradient(800px 500px at 100% 10%,#0ea5b755,transparent);--card:#ffffff0f;--bd:#ffffff22;--tx:#eef0ff;--mu:#a5acd6;--ac:#8b7bff;--ac2:#22d3ee;--btn:linear-gradient(135deg,#8b7bff,#22d3ee);--btnt:#07081a;--code:#080a16;--sh:0 10px 40px #0008;--blur:blur(16px)}
+[data-theme=sakura]{--bg:#fff7f3;--bg2:radial-gradient(700px 400px at 90% -5%,#ffd9e4,transparent),radial-gradient(600px 400px at 0 20%,#ffe9c9,transparent);--card:#ffffffcc;--bd:#f0d4cc;--tx:#3a2a2e;--mu:#8a6f74;--ac:#e0567f;--ac2:#f59e6b;--btn:linear-gradient(135deg,#e0567f,#f59e6b);--btnt:#fff;--code:#2d2025;--sh:0 8px 30px #c9708033;--blur:none;--hf:'Fraunces',serif;--r:24px}
+[data-theme=matcha]{--bg:#0f1a14;--bg2:repeating-linear-gradient(0deg,#ffffff06 0 1px,transparent 1px 28px),repeating-linear-gradient(90deg,#ffffff06 0 1px,transparent 1px 28px);--card:#16261d;--bd:#2f5a43;--tx:#e6f5ea;--mu:#8fb89d;--ac:#7CFC9E;--ac2:#f5d76e;--btn:#7CFC9E;--btnt:#08130d;--code:#0a120d;--sh:6px 6px 0 #7CFC9E33;--blur:none;--hf:'JetBrains Mono',monospace;--bf:'JetBrains Mono',monospace;--r:6px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--bf);background:var(--bg) ;color:var(--tx);min-height:100vh;line-height:1.65}
+body::before{content:"";position:fixed;inset:0;background:var(--bg2);z-index:-1}
+h1,h2,h3,h4{font-family:var(--hf);line-height:1.2}
+button{font:inherit;cursor:pointer;color:inherit}
+.hidden{display:none!important}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);box-shadow:var(--sh);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
+.btn{background:var(--btn);color:var(--btnt);border:0;padding:.7rem 1.3rem;border-radius:calc(var(--r)/1.6);font-weight:700;transition:transform .15s,filter .15s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--tx);border:1px solid var(--bd)}
+input,select{width:100%;padding:.7rem .9rem;border-radius:12px;border:1px solid var(--bd);background:#0000001a;color:var(--tx);font:inherit}
+[data-theme=sakura] input,[data-theme=sakura] select{background:#fff}
+input:focus,select:focus{outline:2px solid var(--ac)}
+label{font-size:.8rem;font-weight:600;color:var(--mu);display:block;margin-bottom:.3rem}
+/* LOGIN */
+#login{min-height:100vh;display:grid;place-items:center;padding:2rem 1rem}
+.lw{width:min(980px,100%);display:grid;grid-template-columns:1fr 1.1fr;gap:1.5rem}
+.lhero{padding:2.2rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem}
+.lhero h1{font-size:clamp(1.9rem,4vw,2.8rem)}
+.lhero h1 span{background:var(--btn);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lhero p{color:var(--mu)}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}.chip{padding:.3rem .8rem;border:1px solid var(--bd);border-radius:99px;font-size:.78rem;color:var(--mu)}
+.lform{padding:2rem;display:grid;gap:1rem}
+.themes{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+.tcard{border:2px solid var(--bd);border-radius:14px;padding:.6rem;text-align:center;background:transparent;font-size:.78rem}
+.tcard.sel{border-color:var(--ac);box-shadow:0 0 0 3px #ffffff14}
+.sw{height:44px;border-radius:9px;margin-bottom:.4rem}
+.fotoRow{display:flex;gap:.8rem;align-items:center}
+.fotoRow img{width:56px;height:56px;border-radius:14px;object-fit:cover;border:1px solid var(--bd)}
+/* HEADER */
+header{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.7rem clamp(.8rem,3vw,2rem);background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--bd)}
+.brand{display:flex;align-items:center;gap:.7rem;min-width:0}
+.brand img{width:46px;height:46px;border-radius:12px;object-fit:cover;border:2px solid var(--ac);flex:none}
+.brand b{font-family:var(--hf);font-size:1rem;display:block;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:48vw}
+.brand small{color:var(--mu);font-size:.72rem}
+.nav{display:flex;align-items:center;gap:.5rem;position:relative}
+.ib{width:42px;height:42px;border-radius:12px;border:1px solid var(--bd);background:var(--card);display:grid;place-items:center;font-size:1.1rem}
+.ib.on{background:var(--btn);color:var(--btnt)}
+.menuBtn{display:flex;align-items:center;gap:.5rem;padding:0 1rem;height:42px;border-radius:12px;background:var(--btn);color:var(--btnt);border:0;font-weight:700}
+.dd{position:absolute;right:0;top:52px;width:min(380px,92vw);padding:1rem;max-height:75vh;overflow:auto;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);box-shadow:var(--sh)}
+.dd .home{width:100%;text-align:left;padding:.7rem 1rem;border-radius:12px;border:1px solid var(--bd);background:var(--card);font-weight:700;margin-bottom:.8rem}
+.dd .g{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
+.dd .g button{padding:.6rem .4rem;border-radius:12px;border:1px solid var(--bd);background:var(--card);font-size:.82rem}
+.dd .g button:hover,.dd .home:hover{border-color:var(--ac);color:var(--ac)}
+.dd .g button.done::after{content:" ✓";color:var(--ac2)}
+.panel{position:absolute;right:0;top:52px;width:260px;padding:1rem;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);box-shadow:var(--sh);display:grid;gap:.7rem}
+.panel .row{display:flex;gap:.5rem}.panel .row button{flex:1;padding:.5rem;border-radius:10px;border:1px solid var(--bd);background:var(--card)}
+input[type=range]{padding:0}
+/* MAIN */
+main{max-width:1080px;margin:0 auto;padding:2rem clamp(.8rem,3vw,1.5rem) 5rem}
+.hero{padding:2.2rem;margin-bottom:1.5rem}
+.hero h2{font-size:clamp(1.6rem,4vw,2.5rem)}
+.hero p{color:var(--mu);margin:.6rem 0 1.2rem;max-width:60ch}
+.bar{height:10px;border-radius:99px;background:var(--bd);overflow:hidden;max-width:420px}.bar i{display:block;height:100%;background:var(--btn);transition:width .4s}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:1rem}
+.pc{padding:1.2rem;text-align:left;transition:transform .2s,border-color .2s;display:grid;gap:.5rem}
+.pc:hover{transform:translateY(-4px);border-color:var(--ac)}
+.pc .no{font-family:var(--hf);font-size:2rem;font-weight:800;background:var(--btn);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pc h4{font-size:1rem}.pc small{color:var(--mu)}
+.tag{display:inline-block;padding:.15rem .6rem;border-radius:99px;background:var(--btn);color:var(--btnt);font-size:.72rem;font-weight:700}
+/* LESSON */
+.lhead{padding:1.8rem;margin-bottom:1.2rem}
+.lhead h2{font-size:clamp(1.5rem,3.5vw,2.2rem);margin:.5rem 0}
+.sec{padding:1.6rem;margin-bottom:1.2rem}
+.sec h3{margin:.2rem 0 .6rem;font-size:1.25rem}
+.sec p{color:var(--mu);margin-bottom:.8rem}
+.sec ul{margin:.5rem 0 1rem 1.2rem}.sec li{margin:.4rem 0;color:var(--mu)}.sec li strong{color:var(--tx)}
+.mc{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}.mc>div{padding:1rem;border:1px solid var(--bd);border-radius:14px}
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:1.2rem;margin:1rem 0}
+@media(max-width:860px){.split,.lw{grid-template-columns:1fr}.menuBtn span.t{display:none}}
+.code{border-radius:14px;overflow:hidden;background:var(--code);border:1px solid var(--bd)}
+.code .top{display:flex;justify-content:space-between;align-items:center;padding:.5rem .9rem;border-bottom:1px solid #ffffff1a;color:#9aa;font-size:.75rem;font-family:var(--mf)}
+.code .top button{background:#ffffff18;border:0;border-radius:8px;padding:.25rem .7rem;color:#fff;font-size:.75rem}
+pre{padding:1rem;overflow:auto;font-family:var(--mf);font-size:.82rem;line-height:1.6;color:#dfe6ff}
+.k{color:#c792ea}.s{color:#c3e88d}.c{color:#6b7599;font-style:italic}.t{color:#ff7a9c}.v{color:#82aaff}.n{color:#f78c6c}
+.ex h4{margin-bottom:.6rem}.ex li{list-style:none;margin:.5rem 0;padding:.6rem .8rem;border-left:3px solid var(--ac);background:var(--card);border-radius:0 10px 10px 0;font-size:.88rem}
+.ex ul{margin:0}
+.demo{padding:1.2rem;border:1px dashed var(--ac);border-radius:14px;margin-top:.5rem}
+.demo>b{display:block;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ac);margin-bottom:.7rem}
+.demo .out{font-family:var(--mf);background:#0003;padding:.8rem 1rem;border-radius:10px;margin-top:.8rem;min-height:2.6rem;white-space:pre-wrap}
+.demo .row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:end;margin:.4rem 0}.demo .row>*{flex:1;min-width:110px}
+.demo .row .btn{flex:none}
+iframe{width:100%;height:210px;border:0;border-radius:10px;background:#fff}
+.big{font-family:var(--mf);font-size:2.2rem;font-weight:700;color:var(--ac)}
+.pager{display:flex;justify-content:space-between;gap:1rem;margin-top:1.5rem;flex-wrap:wrap}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--btn);color:var(--btnt);padding:.7rem 1.2rem;border-radius:99px;font-weight:700;z-index:99;box-shadow:var(--sh)}
+</style></head>
+<body><header><div class="brand"><b>Daftar Pertemuan</b></div><div class="nav"><a class="btn ghost" href="../index.html">🏠 Beranda</a></div></header>
+<main><div class="grid"><a class="card pc" href="pertemuan-01.html" style="text-decoration:none;color:inherit"><span class="no">01</span><h4>Pengantar Web</h4><small>Klasifikasi website & perangkat kerja</small></a><a class="card pc" href="pertemuan-02.html" style="text-decoration:none;color:inherit"><span class="no">02</span><h4>Tag, Heading & Tabel HTML</h4><small>Struktur dasar dokumen & tabel</small></a><a class="card pc" href="pertemuan-03.html" style="text-decoration:none;color:inherit"><span class="no">03</span><h4>Variabel PHP</h4><small>Deklarasi variabel & echo</small></a><a class="card pc" href="pertemuan-04.html" style="text-decoration:none;color:inherit"><span class="no">04</span><h4>Operator Aritmatika PHP</h4><small>Kalkulasi dasar dengan PHP</small></a><a class="card pc" href="pertemuan-05.html" style="text-decoration:none;color:inherit"><span class="no">05</span><h4>Form GET/POST & Percabangan PHP</h4><small>Metode GET, POST, IF, ELSE, SWITCH</small></a><a class="card pc" href="pertemuan-06.html" style="text-decoration:none;color:inherit"><span class="no">06</span><h4>Percabangan JavaScript</h4><small>if..else, else if & switch</small></a><a class="card pc" href="pertemuan-07.html" style="text-decoration:none;color:inherit"><span class="no">07</span><h4>Perulangan PHP</h4><small>Statemen FOR</small></a><a class="card pc" href="pertemuan-08.html" style="text-decoration:none;color:inherit"><span class="no">08</span><h4>Dialog Pop-Up JS</h4><small>alert, confirm, prompt</small></a><a class="card pc" href="pertemuan-09.html" style="text-decoration:none;color:inherit"><span class="no">09</span><h4>Dasar CSS</h4><small>Mengatur tampilan elemen HTML</small></a><a class="card pc" href="pertemuan-10.html" style="text-decoration:none;color:inherit"><span class="no">10</span><h4>CSS & Responsive Layout</h4><small>Flexbox & media query</small></a><a class="card pc" href="pertemuan-11.html" style="text-decoration:none;color:inherit"><span class="no">11</span><h4>Dasar JavaScript</h4><small>Operator, variabel & fungsi</small></a><a class="card pc" href="pertemuan-12.html" style="text-decoration:none;color:inherit"><span class="no">12</span><h4>Objek JavaScript: Array, Date & Math</h4><small>Array, Date dan Math</small></a><a class="card pc" href="pertemuan-13.html" style="text-decoration:none;color:inherit"><span class="no">13</span><h4>Objek String, Document & Window</h4><small>String, Document, Window</small></a><a class="card pc" href="pertemuan-14.html" style="text-decoration:none;color:inherit"><span class="no">14</span><h4>Dasar JSP (Java Server Pages)</h4><small>Sintaks, kondisi & perulangan JSP</small></a><a class="card pc" href="pertemuan-15.html" style="text-decoration:none;color:inherit"><span class="no">15</span><h4>Kejadian (Event) JavaScript</h4><small>onClick, onFocus/onBlur, onLoad, onMouseOver</small></a><a class="card pc" href="pertemuan-16.html" style="text-decoration:none;color:inherit"><span class="no">16</span><h4>JavaScript: Obyek String, Date & Array</h4><small>Properti, metode & jam digital</small></a><a class="card pc" href="pertemuan-17.html" style="text-decoration:none;color:inherit"><span class="no">17</span><h4>Cascading Style Sheet (CSS)</h4><small>Selector, font, border, margin, padding, link</small></a><a class="card pc" href="pertemuan-18.html" style="text-decoration:none;color:inherit"><span class="no">18</span><h4>Objek JavaScript (2): Array, Date & Math</h4><small>Review objek + latihan</small></a><a class="card pc" href="pertemuan-19.html" style="text-decoration:none;color:inherit"><span class="no">19</span><h4>Marquee dan Frame</h4><small>Teks berjalan & frame halaman</small></a><a class="card pc" href="pertemuan-20.html" style="text-decoration:none;color:inherit"><span class="no">20</span><h4>Java Web, MVC, Framework & Tomcat</h4><small>Web container, MVC, Spring, WAR</small></a><a class="card pc" href="pertemuan-21.html" style="text-decoration:none;color:inherit"><span class="no">21</span><h4>Dasar-dasar Servlet</h4><small>Daur hidup, arsitektur, request & response</small></a></div></main></body></html>
